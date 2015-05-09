@@ -12,15 +12,19 @@ class cups (
   $cups_lpd_enable = $cups::params::cups_lpd_enable,
   $package_cups_lpd = $cups::params::package_cups_lpd,
   $config_file = $cups::params::config_file,
+  $cups_browsed_enable = $cups::params::cups_browsed_enable,
 ) inherits cups::params {
 
   include '::cups::install'
   include '::cups::service'
+  if $cups::cups_browsed_enable == true {
+    include '::cups::browsed::service'
+  } 
 
   $printers_default = { ensure => present }
   create_resources('printer', hiera_hash(cups::printers), $printers_default)
 
   if $cups::cups_lpd_enable {
-      include '::cups::config'
+    include '::cups::config'
   }
 }
