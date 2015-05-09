@@ -14,4 +14,5 @@ class cups::params {
   $cups_lpd_enable                  = false
   $package_cups_lpd                 = 'cups-lpd'
   $config_file                      = 'puppet:///modules/cups/cups-lpd'
+  $cups_browsed_enable              = false
 }

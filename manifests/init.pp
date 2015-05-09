@@ -12,10 +12,14 @@ class cups (
   $cups_lpd_enable         = $::cups::params::cups_lpd_enable,
   $package_cups_lpd        = $::cups::params::package_cups_lpd,
   $config_file             = $::cups::params::config_file,
+  $cups_browsed_enable     = $::cups::params::cups_browsed_enable,
 ) inherits cups::params {
 
   include '::cups::install'
   include '::cups::service'
+  if $cups::cups_browsed_enable == true {
+    include '::cups::browsed::service'
+  }
 
   $printer_defaults_def = { ensure => present }
   $printer_defaults = hiera_hash('cups::printer_defaults', {})
