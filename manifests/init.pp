@@ -47,4 +47,5 @@ class cups (
       require => [ Class['::cups::service'], Printer[keys($printers)], ],
     }
   }
+
 }
