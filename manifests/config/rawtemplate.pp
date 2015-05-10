@@ -11,6 +11,13 @@ define cups::config::rawtemplate (
   else {
     $_chmod_value = $chmod_value
   }
+  if ($::osfamily == 'RedHat' and $::operatingsystemmajrelease == 6 and $file == '/etc/cups/cupsd.conf') {
+    $includeFile = [ 'Include /etc/cups/cups-browsed.conf' ]
+    $_values = split(inline_template("<%= (@values+@includeFile).join(',') %>"),',')
+  }
+  else {
+    $_values = $values
+  }
   file { "$file":
     ensure  => file,
     content => template('cups/cups-browsed.erb'),
