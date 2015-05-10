@@ -8,12 +8,12 @@ class cups::browsed::service {
   validate_re ($::operatingsystemmajrelease, '7', 'cups-browsed only exists with SystemD cups in CentOS')
 
   if !defined(Package["cups"]) {
-    package {'cups':
+    package { 'cups':
       ensure => present,
     }
   }
 
-  service {'cups-browsed':
+  service { 'cups-browsed':
     ensure  => running,
     pattern => 'cups-browsed',
     enable  => true,
