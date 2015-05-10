@@ -23,5 +23,6 @@ define cups::config::rawtemplate (
     content => template('cups/cups-browsed.erb'),
     mode    => $_chmod_value,
     notify  => Service["${service}"],
+    require => Package['cups'],
   }
 }
