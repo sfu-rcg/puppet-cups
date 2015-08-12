@@ -28,7 +28,7 @@ define cups::config::rawtemplate (
       } # ::operatingsystemmajrelease
     } # CentOS
     Fedora: {
-      $cups_browsed_package = 'cups-filter'
+      $cups_browsed_package = 'cups-filters'
     } # Fedora
     default: {
       fail("Unsupported platform.")
