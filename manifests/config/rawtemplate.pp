@@ -18,11 +18,28 @@ define cups::config::rawtemplate (
   else {
     $_values = $values
   }
+
+  case $::operatingsystem {
+    CentOS: {
+      case $::operatingsystemmajrelease {
+        7: {
+          $cups_browsed_package = 'cups'
+        } # 7
+      } # ::operatingsystemmajrelease
+    } # CentOS
+    Fedora: {
+      $cups_browsed_package = 'cups-filter'
+    } # Fedora
+    default: {
+      fail("Unsupported platform.")
+    } # default
+  } # ::operatingsystem
+
   file { "$file":
     ensure  => file,
     content => template('cups/cups-browsed.erb'),
     mode    => $_chmod_value,
     notify  => Service["${service}"],
-    require => Package['cups'],
+    require => Package[$cups_browsed_package],
   }
 }
