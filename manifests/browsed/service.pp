@@ -36,10 +36,11 @@ class cups::browsed::service {
             }
           }
           service { 'cups-browsed':
-            ensure  => running,
-            pattern => 'cups-browsed',
-            enable  => true,
-            require => Package['cups-filters'],
+            provider => 'systemd',
+            ensure   => running,
+            pattern  => 'cups-browsed',
+            enable   => true,
+            require  => Package['cups-filters'],
           }
         } # end 22
         default: {
