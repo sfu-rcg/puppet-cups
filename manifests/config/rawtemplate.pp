@@ -30,6 +30,9 @@ define cups::config::rawtemplate (
     Fedora: {
       $cups_browsed_package = 'cups-filters'
     } # Fedora
+    Ubuntu: {
+      $cups_browsed_package = 'cups-browsed'
+    } # Ubuntu
     default: {
       fail("Unsupported platform.")
     } # default
