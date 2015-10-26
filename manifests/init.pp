@@ -4,6 +4,8 @@ class cups (
   $package_ensure          = $::cups::params::package_ensure,
   $package_name            = $::cups::params::package_name,
   $package_install_options = $::cups::params::package_install_options,
+  $package_cups_browsed    = $::cups::params::package_cups_browsed,
+  $service_cups_browsed    = $::cups::params::service_cups_browsed,
   $devel_package_ensure    = $::cups::params::devel_package_ensure,
   $devel_package_name      = $::cups::params::devel_package_name,
   $service_ensure          = $::cups::params::service_ensure,
@@ -47,5 +49,4 @@ class cups (
       require => [ Class['::cups::service'], Printer[keys($printers)], ],
     }
   }
-
 }

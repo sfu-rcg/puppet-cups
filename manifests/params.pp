@@ -15,4 +15,35 @@ class cups::params {
   $package_cups_lpd                 = 'cups-lpd'
   $config_file                      = 'puppet:///modules/cups/cups-lpd'
   $cups_browsed_enable              = false
+  $service_cups_browsed             = 'cups-browsed'
+
+  $package_cups_browsed = $::operatingsystem ? {
+    CentOS => undef,
+    Fedora => 'cups-filters',
+    Ubuntu => 'cups-browsed',
+  }
+  # Browsed Class verification for whether supported or not
+  case $::operatingsystem {
+    CentOS: {
+      $browsed_support = $::operatingsystemmajrelease ? {
+        7       => true,
+        default => false,
+      }
+    } # end CentOS
+    Fedora: {
+      $browsed_support = $::operatingsystemmajrelease ? {
+        22      => true,
+        default => false,
+      }
+    } # end Fedora
+    Ubuntu: {
+      $browsed_support = $::operatingsystemmajrelease ? {
+        /^15\.\d+$/ => true,
+        default     => false,
+      }
+    } # end Ubuntu
+    default: {
+      $browsed_support = false
+    }
+  } # end ::operatingsystem
 }
