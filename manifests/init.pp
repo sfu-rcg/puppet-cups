@@ -18,7 +18,7 @@ class cups (
   include '::cups::service'
   if $cups::cups_browsed_enable == true {
     include '::cups::browsed::service'
-  } 
+  }
   $printers_hash = hiera_hash(cups::printers, "Hash doesn't exist(no YAML data for cups::printers)")
   $printers_default = { ensure => present }
   if is_hash($printers_hash) {

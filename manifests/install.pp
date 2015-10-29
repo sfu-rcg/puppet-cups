@@ -1,14 +1,13 @@
-class cups::install (
-) {
-    package { 'cups':
-        name    => $cups::package_name,
-        ensure  => $cups::package_ensure,
+class cups::install {
+  package { 'cups':
+    ensure => $cups::package_ensure,
+    name   => $cups::package_name,
+  }
+  
+  if $cups::cups_lpd_enable {
+    package { 'cups-lpd':
+      ensure => $cups::package_ensure,
+      name   => $cups::package_cups_lpd,
     }
-    
-    if $cups::cups_lpd_enable {
-        package { 'cups-lpd':
-            name    => $cups::package_cups_lpd,
-            ensure  => $cups::package_ensure,
-        }
-    }
+  }
 }
