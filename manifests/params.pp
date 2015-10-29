@@ -26,13 +26,13 @@ class cups::params {
   case $::operatingsystem {
     CentOS: {
       $browsed_support = $::operatingsystemmajrelease ? {
-        7       => true,
+        '7'       => true,
         default => false,
       }
     } # end CentOS
     Fedora: {
       $browsed_support = $::operatingsystemmajrelease ? {
-        22      => true,
+        '22'      => true,
         default => false,
       }
     } # end Fedora
