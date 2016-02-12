@@ -34,6 +34,7 @@ class cups::params {
     },
     'Ubuntu' => $::operatingsystemmajrelease ? {
       /^15\.\d+$/ => true,
+      /^16\.\d+$/ => true,
       default     => false,
     },
     default => false

@@ -30,11 +30,11 @@
     {
       "operatingsystem":"CentOS",
       "operatingsystemmajrelease":[ "7" ],
-      "operatingsystemrelease":[ "6.4", "6.5", "6.6" ]
+      "operatingsystemrelease":[ "6.4", "6.5", "6.6", "6.7" ]
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "10.04", "12.04", "15.04", "15.10" ]
+      "operatingsystemrelease": [ "10.04", "12.04", "15.04", "15.10", "16.04"]
     }
   ]
 }
